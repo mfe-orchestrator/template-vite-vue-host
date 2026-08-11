@@ -61,12 +61,21 @@ anything imports a remote:**
 ```js
 import { configure } from '@mfe-orchestrator-hub/client'
 
+const environment = import.meta.env.VITE_MFE_ENVIRONMENT?.trim()
+
 configure({
   backendUrl: import.meta.env.VITE_MFE_BACKEND_URL,
   projectId: import.meta.env.VITE_MFE_PROJECT_ID,
-  environment: import.meta.env.VITE_MFE_ENVIRONMENT
+  ...(environment ? { environment } : {})
 })
 ```
+
+`environment` is optional. The host does not have to know which environment it runs in: when the
+key is absent the backend resolves the environment from the domain the request comes from. An
+unset Vite variable arrives as `undefined` and one declared empty in `.env` arrives as an empty
+string, so the entry point normalises both and drops the key instead of forwarding a fake slug.
+Set `VITE_MFE_ENVIRONMENT` only when you want to pin the environment explicitly — for instance
+when several environments are served from the same domain.
 
 **2. The remote, declared in `vite.config.js` as a promise that resolves to a URL:**
 
@@ -96,11 +105,11 @@ template, so you can see what the environment actually returned.
 
 Copy `.env.example` to `.env` and fill it in. Vite injects them at build time.
 
-| variable | what it is |
-| --- | --- |
-| `VITE_MFE_BACKEND_URL` | orchestrator backend, including the `/api` suffix |
-| `VITE_MFE_PROJECT_ID` | id of your project in the orchestrator |
-| `VITE_MFE_ENVIRONMENT` | environment slug, ex. `DEV` |
+| variable | required | what it is |
+| --- | --- | --- |
+| `VITE_MFE_BACKEND_URL` | yes | orchestrator backend, including the `/api` suffix |
+| `VITE_MFE_PROJECT_ID` | yes | id of your project in the orchestrator |
+| `VITE_MFE_ENVIRONMENT` | no | environment slug, ex. `DEV`. Omit it, or leave it empty, and the backend resolves the environment from the domain the request comes from |
 
 `.env` is gitignored. Never commit real values.
 
