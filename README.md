@@ -35,11 +35,11 @@ pnpm build      # production build into dist/
 │   ├── App.vue                              # shell, consumes the example remote
 │   ├── components/ManifestPanel.vue          # reads the manifest through the SDK
 │   ├── index.css
-│   └── main.js                              # configure() lives here
+│   └── main.ts                              # configure() lives here
 ├── .env.example
 ├── package.json
 ├── pnpm-workspace.yaml
-└── vite.config.js                           # federation config
+└── vite.config.ts                           # federation config
 ```
 
 ## How the orchestrator is wired in
@@ -51,7 +51,7 @@ canaries exist.
 
 Two pieces make that work.
 
-**1. `configure()`, at the very top of the entry point (`src/main.js`), synchronously, before
+**1. `configure()`, at the very top of the entry point (`src/main.ts`), synchronously, before
 anything imports a remote:**
 
 ```js
@@ -73,7 +73,7 @@ string, so the entry point normalises both and drops the key instead of forwardi
 Set `VITE_MFE_ENVIRONMENT` only when you want to pin the environment explicitly — for instance
 when several environments are served from the same domain.
 
-**2. The remote, declared in `vite.config.js` as a promise that resolves to a URL:**
+**2. The remote, declared in `vite.config.ts` as a promise that resolves to a URL:**
 
 ```js
 federation({
@@ -113,7 +113,7 @@ Copy `.env.example` to `.env` and fill it in. Vite injects them at build time.
 
 `pnpm build` writes to `dist/`. The federation entry lands at **`dist/assets/remoteEntry.js`**, which is the `entryPoint` the marketplace entry declares.
 
-Check it after any change to `vite.config.js`: the orchestrator serves exactly that path, so a build that
+Check it after any change to `vite.config.ts`: the orchestrator serves exactly that path, so a build that
 puts the entry somewhere else is broken.
 
 ## Deploying

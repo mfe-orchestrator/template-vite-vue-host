@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { defineAsyncComponent, h } from 'vue'
 import ManifestPanel from './components/ManifestPanel.vue'
 
-// Example remote, declared in vite.config.js. Rename "exampleremote" and the slug
+// Example remote, declared in vite.config.ts. Rename "exampleremote" and the slug
 // it points to, or delete both once you wire your own microfrontends.
 const RemoteButton = defineAsyncComponent({
   loader: () => import('exampleremote/Button'),
@@ -12,7 +12,7 @@ const RemoteButton = defineAsyncComponent({
       h(
         'span',
         { class: 'remote-error' },
-        'Remote "example-remote" is not available. Point vite.config.js at one of your own slugs.'
+        'Remote "example-remote" is not available. Point vite.config.ts at one of your own slugs.'
       )
   }
 })
