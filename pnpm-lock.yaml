@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mfe-orchestrator-hub/client':
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.2.1
+        version: 0.2.1
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@5.9.3)
@@ -53,8 +53,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.5':
     resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
 
-  '@mfe-orchestrator-hub/client@0.1.1':
-    resolution: {integrity: sha512-X4vLS/UnZPeIrTiLP5tzEH31QnBPOk3ct9vo/o7QeoKVJQYsRuIKyOWNodJg7nhgsfoBKRjnftE1pbACoqChNg==}
+  '@mfe-orchestrator-hub/client@0.2.1':
+    resolution: {integrity: sha512-rMNk0hgkYf5VffdWGkyM5b0SXPGNmy8vQj55+oF2aqhXAuxE3nNPioy1oUTq8JZEHZvCGwMiH2/vk5WuzumMWg==}
     engines: {node: '>=20.0.0'}
 
   '@originjs/vite-plugin-federation@1.4.1':
@@ -443,7 +443,7 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
-  '@mfe-orchestrator-hub/client@0.1.1': {}
+  '@mfe-orchestrator-hub/client@0.2.1': {}
 
   '@originjs/vite-plugin-federation@1.4.1':
     dependencies:
