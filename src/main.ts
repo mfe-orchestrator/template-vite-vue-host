@@ -14,6 +14,12 @@ configure({
   ...(environment ? { environment } : {})
 })
 
+// Application Insights, only when the environment defines APPLICATIONINSIGHTS_CONNECTION_STRING
+// (see src/telemetry.ts). Not awaited: telemetry never holds the app back.
+import { startTelemetry } from './telemetry'
+
+void startTelemetry()
+
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
